@@ -1,7 +1,7 @@
 defmodule Mastery.Examples.Math do
-   alias Mastery.Core.Quiz
+  alias Mastery.Core.Quiz
 
-   def template_fields() do
+  def template_fields() do
     [
       name: :single_digit_addition,
       category: "addition",
@@ -10,31 +10,32 @@ defmodule Mastery.Examples.Math do
       generators: addition_generator(),
       checker: &addition_checker/2
     ]
-   end
+  end
 
-   def addition_checker(substitutions, answer) do
-    left  = Keyword.fetch!(substitutions, :left)
+  def addition_checker(substitutions, answer) do
+    left = Keyword.fetch!(substitutions, :left)
     right = Keyword.fetch!(substitutions, :right)
 
     to_string(left = right) == String.trim(answer)
-   end
+  end
 
-   def addition_generator() do
+  def addition_generator() do
     %{
-      left: Enum.to_list(0..9), right: Enum.to_list(0..9)
-     }
-   end
+      left: Enum.to_list(0..9),
+      right: Enum.to_list(0..9)
+    }
+  end
 
-   def quiz_fields() do
+  def quiz_fields() do
     %{
       mastery: 2,
       title: :simple_addition
-     }
-   end
+    }
+  end
 
-   def quiz() do
+  def quiz() do
     quiz_fields()
-    |> Quiz.new
+    |> Quiz.new()
     |> Quiz.add_template(template_fields())
-   end
+  end
 end
